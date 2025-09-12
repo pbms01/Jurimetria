@@ -1,0 +1,61 @@
+import random
+
+def realizar_sorteio():
+    """Função principal para realizar o sorteio"""
+    while True:
+        try:
+            # Solicita o número de participantes
+            num_participantes = int(input("Digite o número de participantes do sorteio: "))
+            
+            # Validação da entrada
+            if num_participantes <= 0:
+                print("❌ Por favor, digite um número maior que zero.")
+                continue
+                
+            # Gera lista de participantes (01, 02, 03, etc.)
+            participantes = [f"{i:02d}" for i in range(1, num_participantes + 1)]
+            
+            # Exibe os participantes
+            print(f"\n🎯 Participantes do sorteio (Total: {num_participantes}):")
+            print(f"Participantes: {', '.join(participantes)}")
+            
+            # Realiza o sorteio
+            sorteado = random.choice(participantes)
+            
+            # Exibe o resultado
+            print(f"\n🎉 RESULTADO DO SORTEIO:")
+            print(f"🏆 Participante sorteado: {sorteado}")
+            
+            break
+            
+        except ValueError:
+            print("❌ Por favor, digite apenas números inteiros.")
+            continue
+
+def main():
+    """Função principal com opção de repetir"""
+    print("=" * 50)
+    print("🎲 SISTEMA DE SORTEIO ALEATÓRIO")
+    print("=" * 50)
+    
+    while True:
+        # Realiza um sorteio
+        realizar_sorteio()
+        
+        # Pergunta se deseja fazer outro sorteio
+        print("\n" + "-" * 40)
+        while True:
+            continuar = input("Deseja realizar outro sorteio? (s/n): ").lower().strip()
+            if continuar in ['s', 'sim', 'y', 'yes']:
+                print("\n" + "=" * 50)
+                break
+            elif continuar in ['n', 'não', 'nao', 'no']:
+                print("\n🙏 Obrigado por usar o sistema de sorteio!")
+                print("👋 Até logo!")
+                return
+            else:
+                print("❌ Por favor, digite 's' para sim ou 'n' para não.")
+
+# Executa o programa
+if __name__ == "__main__":
+    main()
